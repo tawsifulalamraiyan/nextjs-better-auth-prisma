@@ -19,14 +19,7 @@ export const SignUp = async ({ email, password, name }: any) => {
   redirect("/signin");
 };
 
-export const Signin = async (formData: FormData) => {
-  const email = formData.get("email")?.toString();
-  const password = formData.get("password")?.toString();
-
-  if (!email || !password) {
-    throw new Error("Missing email or password");
-  }
-
+export const Signin = async ({ email, password }: any) => {
   try {
     await auth.api.signInEmail({
       body: {
@@ -35,9 +28,8 @@ export const Signin = async (formData: FormData) => {
       },
     });
   } catch (error) {
-    throw new Error("Signin failed: " + error);
+    throw new Error("Signup failed: " + error);
   }
-
   redirect("/dashboard");
 };
 

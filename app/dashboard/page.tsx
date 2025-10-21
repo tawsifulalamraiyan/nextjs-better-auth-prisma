@@ -1,10 +1,24 @@
+import { Card } from "@/components/ui/card";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect("/signin");
+  }
   return (
     <>
-      <main>
-        <h1>Dashboard</h1>
+      <main className=" flex items-center justify-center min-h-screen">
+        <Card className=" flex flex-col p-10">
+          <h1>Dashboard</h1>
+          <h1>Welcome {session.user.name}</h1>
+        </Card>
       </main>
     </>
   );
