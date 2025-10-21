@@ -4,7 +4,11 @@ import { redirect } from "next/navigation";
 import { auth } from "../auth";
 import { headers } from "next/headers";
 
-export const SignUp = async ({ email, password, name }: any) => {
+export const SignUp = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+  const name = formData.get("name") as string;
+
   try {
     await auth.api.signUpEmail({
       body: {
@@ -14,12 +18,18 @@ export const SignUp = async ({ email, password, name }: any) => {
       },
     });
   } catch (error) {
-    throw new Error("Signup failed: " + error);
+    // You can enhance this with useFormState later
+    console.error("Signup error:", error);
+    throw new Error("Signup failed");
   }
+
   redirect("/signin");
 };
 
-export const Signin = async ({ email, password }: any) => {
+export const Signin = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
   try {
     await auth.api.signInEmail({
       body: {
@@ -28,8 +38,10 @@ export const Signin = async ({ email, password }: any) => {
       },
     });
   } catch (error) {
-    throw new Error("Signup failed: " + error);
+    console.error("Signin error:", error);
+    throw new Error("Signin failed");
   }
+
   redirect("/dashboard");
 };
 

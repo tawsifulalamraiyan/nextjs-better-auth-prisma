@@ -17,7 +17,7 @@ const SignupPage = async () => {
   }
   return (
     <main className="flex items-center justify-center min-h-screen">
-      <form method="post" onSubmit={SignUp}>
+      <form action={SignUp}>
         <Card className="p-10 flex flex-col gap-4">
           <Input name="name" placeholder="Full name" />
           <Input name="email" type="email" placeholder="Email address" />
