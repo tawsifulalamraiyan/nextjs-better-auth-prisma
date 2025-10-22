@@ -16,8 +16,12 @@ const page = async () => {
     <>
       <main className=" flex items-center justify-center min-h-screen">
         <Card className=" flex flex-col p-10">
-          <h1>Dashboard</h1>
-          <h1>Welcome {session.user.name}</h1>
+          <div className=" flex items-start justify-start gap-20">
+            <div>
+              <h1>Dashboard</h1>
+              <h1>Welcome {session.user.name}</h1>
+            </div>
+          </div>
         </Card>
       </main>
     </>

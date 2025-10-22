@@ -20,7 +20,7 @@ export const SignUp = async (formData: FormData) => {
   } catch (error) {
     // You can enhance this with useFormState later
     console.error("Signup error:", error);
-    throw new Error("Signup failed");
+    redirect("/signup");
   }
 
   redirect("/signin");
@@ -39,7 +39,8 @@ export const Signin = async (formData: FormData) => {
     });
   } catch (error) {
     console.error("Signin error:", error);
-    throw new Error("Signin failed");
+
+    redirect("/signin");
   }
 
   redirect("/dashboard");
